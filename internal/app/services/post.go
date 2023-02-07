@@ -1,6 +1,8 @@
 package services
 
-import "go_framework/intermal/respositories"
+import (
+	"go_framework/internal/app/respositories"
+)
 
 type PostServices struct {
 	repo respositories.IPostRepo

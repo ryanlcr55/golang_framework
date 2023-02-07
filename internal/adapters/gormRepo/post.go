@@ -2,7 +2,7 @@ package gormRepo
 
 import (
 	"errors"
-	"go_framework/intermal/respositories"
+	"go_framework/internal/app/respositories"
 	"gorm.io/datatypes"
 	"gorm.io/gorm"
 	"time"
