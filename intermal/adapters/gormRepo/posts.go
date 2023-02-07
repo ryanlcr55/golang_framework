@@ -1,8 +1,10 @@
-package respositories
+package gormRepo
 
 import (
+	"errors"
 	"go_framework/intermal/respositories"
 	"gorm.io/datatypes"
+	"gorm.io/gorm"
 	"time"
 )
 
@@ -19,6 +21,17 @@ type PostModel struct {
 }
 
 type PostRepo struct {
+	DB *gorm.DB
+}
+
+func (r PostRepo) WithTransaction(tx any) (respositories.IPostRepo, error) {
+	gormTx, ok := tx.(*gorm.DB)
+	if !ok && gormTx != nil {
+		return nil, errors.New("transaction handler is illegal")
+	}
+	return PostRepo{
+		DB: gormTx,
+	}, nil
 }
 
 func (r PostRepo) FindByNo(no string) (respositories.Post, error) {

@@ -16,7 +16,8 @@ type Post struct {
 	UpdatedAt time.Time
 }
 
-type PostRepo interface {
+type IPostRepo interface {
+	WithTransaction(tx any) (IPostRepo, error)
 	FindByNo(no string) (Post, error)
 	Create(post Post) error
 }
