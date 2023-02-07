@@ -1,6 +1,7 @@
 package gormRepo
 
 import (
+	"context"
 	"errors"
 	"go_framework/internal/app/respositories"
 	"gorm.io/datatypes"
@@ -34,12 +35,12 @@ func (r PostRepo) WithTransaction(tx any) (respositories.IPostRepo, error) {
 	}, nil
 }
 
-func (r PostRepo) FindByNo(no string) (respositories.Post, error) {
+func (r PostRepo) FindByNo(ctx context.Context, no string) (respositories.Post, error) {
 	var post PostModel
 	return r.marshallPost(&post), nil
 }
 
-func (r PostRepo) Create(post *respositories.Post) error {
+func (r PostRepo) Create(ctx context.Context, post *respositories.Post) error {
 	data := r.unmarshallPost(post)
 	return r.DB.Create(&data).Error
 }

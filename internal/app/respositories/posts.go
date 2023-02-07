@@ -1,6 +1,7 @@
 package respositories
 
 import (
+	"context"
 	"time"
 )
 
@@ -18,6 +19,6 @@ type Post struct {
 
 type IPostRepo interface {
 	WithTransaction(tx any) (IPostRepo, error)
-	FindByNo(no string) (Post, error)
-	Create(post *Post) error
+	FindByNo(ctx context.Context, no string) (Post, error)
+	Create(ctx context.Context, post *Post) error
 }
