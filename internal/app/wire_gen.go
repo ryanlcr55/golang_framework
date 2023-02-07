@@ -9,15 +9,17 @@ package app
 import (
 	"go_framework/internal/adapters/gormRepo"
 	"go_framework/internal/app/services"
+	"go_framework/internal/configs"
 	"go_framework/internal/pkg/database"
 )
 
 // Injectors from wire.go:
 
 func InitializeServer() Application {
-	db := database.NewGormDb()
+	configsConfigs := configs.NewServerConfig()
+	db := database.NewGormDb(configsConfigs)
 	postRepo := gormRepo.NewGormPostRepo(db)
 	postServices := services.NewPostService(postRepo)
-	application := NewApplication(postServices)
+	application := NewApplication(configsConfigs, postServices)
 	return application
 }

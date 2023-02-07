@@ -1,8 +1,12 @@
 package app
 
-import "go_framework/internal/app/services"
+import (
+	"go_framework/internal/app/services"
+	"go_framework/internal/configs"
+)
 
 type Application struct {
+	Configs  configs.Configs
 	Services Services
 	//Logger
 }
@@ -12,11 +16,13 @@ type Services struct {
 }
 
 func NewApplication(
-	PostService services.PostServices,
+	configs configs.Configs,
+	PostSrv services.PostServices,
 ) Application {
 	return Application{
+		Configs: configs,
 		Services: Services{
-			PostService: PostService,
+			PostService: PostSrv,
 		},
 	}
 }
