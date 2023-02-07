@@ -9,6 +9,11 @@ import (
 	"github.com/spf13/viper"
 )
 
+type Configs struct {
+	Server Server
+	DB     DB
+}
+
 func NewServerConfig() Configs {
 	log.Println("Configs is initializing...")
 	config := Configs{}
