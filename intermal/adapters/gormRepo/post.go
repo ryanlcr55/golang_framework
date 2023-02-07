@@ -36,24 +36,43 @@ func (r PostRepo) WithTransaction(tx any) (respositories.IPostRepo, error) {
 
 func (r PostRepo) FindByNo(no string) (respositories.Post, error) {
 	var post PostModel
-	return r.marshallPost(post), nil
+	return r.marshallPost(&post), nil
 }
 
-func (r PostRepo) Create(post respositories.Post) error {
-
-	return nil
+func (r PostRepo) Create(post *respositories.Post) error {
+	data := r.unmarshallPost(post)
+	return r.DB.Create(&data).Error
 }
 
-func (r PostRepo) marshallPost(post PostModel) respositories.Post {
+func (r PostRepo) marshallPost(postModel *PostModel) respositories.Post {
 	return respositories.Post{
+		ID:        postModel.ID,
+		No:        postModel.No,
+		UserNo:    postModel.UserNo,
+		Status:    postModel.Status,
+		Title:     postModel.Title,
+		Content:   postModel.Content,
+		ShowAt:    time.Time(postModel.ShowAt),
+		CreatedAt: postModel.CreatedAt,
+		UpdatedAt: postModel.UpdatedAt,
+	}
+}
+
+func (r PostRepo) unmarshallPost(post *respositories.Post) PostModel {
+	return PostModel{
 		ID:        post.ID,
 		No:        post.No,
 		UserNo:    post.UserNo,
 		Status:    post.Status,
 		Title:     post.Title,
 		Content:   post.Content,
-		ShowAt:    time.Time(post.ShowAt),
-		CreatedAt: post.CreatedAt,
+		ShowAt:    datatypes.Date(post.ShowAt),
 		UpdatedAt: post.UpdatedAt,
+	}
+}
+
+func NewGormPostRepo(DB *gorm.DB) PostRepo {
+	return PostRepo{
+		DB: DB,
 	}
 }

@@ -19,5 +19,5 @@ type Post struct {
 type IPostRepo interface {
 	WithTransaction(tx any) (IPostRepo, error)
 	FindByNo(no string) (Post, error)
-	Create(post Post) error
+	Create(post *Post) error
 }
