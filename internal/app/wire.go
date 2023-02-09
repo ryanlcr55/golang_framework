@@ -18,6 +18,8 @@ func InitializeServer() Application {
 		database.NewGormDb,
 		gormRepo.NewGormPostRepo,
 		wire.Bind(new(respositories.IPostRepo), new(gormRepo.PostRepo)),
+		gormRepo.NewTransactionHandler,
+		wire.Bind(new(respositories.ITrxHandler), new(gormRepo.TrxHandler)),
 		services.NewPostService,
 		NewApplication,
 	)

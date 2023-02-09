@@ -20,6 +20,7 @@ func InitializeServer() Application {
 	db := database.NewGormDb(configsConfigs)
 	postRepo := gormRepo.NewGormPostRepo(db)
 	postServices := services.NewPostService(postRepo)
-	application := NewApplication(configsConfigs, postServices)
+	trxHandler := gormRepo.NewTransactionHandler(db)
+	application := NewApplication(configsConfigs, postServices, trxHandler)
 	return application
 }

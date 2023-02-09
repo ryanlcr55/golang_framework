@@ -1,7 +1,7 @@
 package respositories
 
-type ITransaction interface {
+type ITrxHandler interface {
 	Begin() any
-	Rollback()
+	RollBack()
 	Commit() error
 }
