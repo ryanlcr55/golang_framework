@@ -11,6 +11,10 @@ import (
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 )
 
+func RegisterServices() {
+
+}
+
 func RunGRPCServer(application app.Application, registerServers ...func(server *grpc.Server)) {
 	port := application.Configs.Server.GrpcPort
 	if port == "" {

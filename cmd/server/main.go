@@ -3,7 +3,10 @@ package server
 import (
 	"fmt"
 	"go_framework/internal/app"
+	"go_framework/internal/genproto"
+	"go_framework/internal/ports"
 	"go_framework/internal/server"
+	"google.golang.org/grpc"
 	"os"
 	"strings"
 )
@@ -16,7 +19,10 @@ func main() {
 	switch serverType {
 	case "http":
 	case "grpc":
-		server.RunGRPCServer(application)
+		svc := ports.NewGrpcServer(application)
+		server.RunGRPCServer(application, func(server *grpc.Server) {
+			genproto.RegisterServiceServer(server, svc)
+		})
 	default:
 		panic(fmt.Sprintf("server type '%s' is not supported", serverType))
 	}
