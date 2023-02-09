@@ -73,8 +73,8 @@ func (r PostRepo) unmarshallPost(post *entities.Post) PostModel {
 	}
 }
 
-func NewGormPostRepo(DB *gorm.DB) PostRepo {
-	return PostRepo{
+func NewGormPostRepo(DB *gorm.DB) *PostRepo {
+	return &PostRepo{
 		DB: DB,
 	}
 }

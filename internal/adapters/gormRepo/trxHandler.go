@@ -21,6 +21,6 @@ func (h TrxHandler) Commit() error {
 	return h.DB.Commit().Error
 }
 
-func NewTransactionHandler(db *gorm.DB) TrxHandler {
-	return TrxHandler{}
+func NewTransactionHandler(db *gorm.DB) *TrxHandler {
+	return &TrxHandler{}
 }
