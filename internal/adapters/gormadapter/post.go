@@ -1,4 +1,4 @@
-package gormRepo
+package gormadapter
 
 import (
 	"context"

@@ -5,7 +5,7 @@ package app
 
 import (
 	"github.com/google/wire"
-	"go_framework/internal/adapters/gormRepo"
+	"go_framework/internal/adapters/gormadapter"
 	"go_framework/internal/app/respositories"
 	"go_framework/internal/app/services"
 	"go_framework/internal/configs"
@@ -16,10 +16,10 @@ func InitializeServer() Application {
 	wire.Build(
 		configs.NewServerConfig,
 		database.NewGormDb,
-		gormRepo.NewGormPostRepo,
-		wire.Bind(new(respositories.IPostRepo), new(*gormRepo.PostRepo)),
-		gormRepo.NewTransactionHandler,
-		wire.Bind(new(respositories.ITrxHandler), new(*gormRepo.TrxHandler)),
+		gormadapter.NewGormPostRepo,
+		wire.Bind(new(respositories.IPostRepo), new(*gormadapter.PostRepo)),
+		gormadapter.NewTransactionHandler,
+		wire.Bind(new(respositories.ITrxHandler), new(*gormadapter.TrxHandler)),
 		services.NewPostService,
 		NewApplication,
 	)

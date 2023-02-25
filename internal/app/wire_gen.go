@@ -7,7 +7,7 @@
 package app
 
 import (
-	"go_framework/internal/adapters/gormRepo"
+	"go_framework/internal/adapters/gormadapter"
 	"go_framework/internal/app/services"
 	"go_framework/internal/configs"
 	"go_framework/internal/pkg/database"
@@ -18,9 +18,9 @@ import (
 func InitializeServer() Application {
 	configsConfigs := configs.NewServerConfig()
 	db := database.NewGormDb(configsConfigs)
-	postRepo := gormRepo.NewGormPostRepo(db)
+	postRepo := gormadapter.NewGormPostRepo(db)
 	postServices := services.NewPostService(postRepo)
-	trxHandler := gormRepo.NewTransactionHandler(db)
+	trxHandler := gormadapter.NewTransactionHandler(db)
 	application := NewApplication(configsConfigs, postServices, trxHandler)
 	return application
 }
