@@ -4,10 +4,11 @@
 //go:build !wireinject
 // +build !wireinject
 
-package app
+package golang_framework
 
 import (
 	"go_framework/internal/adapters/gormadapter"
+	"go_framework/internal/app"
 	"go_framework/internal/app/services"
 	"go_framework/internal/pkg/configs"
 	"go_framework/internal/pkg/database"
@@ -15,12 +16,12 @@ import (
 
 // Injectors from wire.go:
 
-func InitializeServer() *Application {
+func InitializeServer() *app.Application {
 	configsConfigs := configs.NewServerConfig()
 	db := database.NewGormDb(configsConfigs)
 	postRepo := gormadapter.NewGormPostRepo(db)
 	postServices := services.NewPostService(postRepo)
 	trxHandler := gormadapter.NewTransactionHandler(db)
-	application := NewApplication(configsConfigs, postServices, trxHandler)
+	application := app.NewApplication(configsConfigs, postServices, trxHandler)
 	return application
 }

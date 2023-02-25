@@ -2,7 +2,7 @@ package server
 
 import (
 	"fmt"
-	"go_framework/internal/app"
+	"go_framework"
 	"go_framework/internal/genproto"
 	"go_framework/internal/ports"
 	"go_framework/internal/server"
@@ -13,7 +13,7 @@ import (
 
 func main() {
 
-	application := app.InitializeServer()
+	application := golang_framework.InitializeServer()
 
 	serverType := strings.ToLower(os.Getenv("SERVER_TO_RUN"))
 	switch serverType {
