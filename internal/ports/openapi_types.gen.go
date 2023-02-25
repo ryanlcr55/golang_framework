@@ -20,7 +20,6 @@ const (
 // Error defines model for Error.
 type Error struct {
 	Message string `json:"message"`
-	Slug    string `json:"slug"`
 }
 
 // PostCreate defines model for PostCreate.
