@@ -1,7 +1,6 @@
 package configs
 
 type Server struct {
-	GrpcProtocol string `mapstructure:"GRPC_PROTOCOL"`
-	GrpcPort     string `mapstructure:"GRPC_PORT"`
-	HttpPort     string `mapstructure:"HTTP_PORT"`
+	GrpcPort string `mapstructure:"GRPC_PORT" default:"8080"`
+	HttpPort string `mapstructure:"HTTP_PORT" default:"8080"`
 }

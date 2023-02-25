@@ -12,11 +12,7 @@ import (
 )
 
 func RunGRPCServer(application app.Application, registerServers ...func(server *grpc.Server)) {
-	port := application.Configs.Server.GrpcPort
-	if port == "" {
-		port = "8080"
-	}
-	addr := fmt.Sprintf(":%s", port)
+	addr := fmt.Sprintf(":%s", application.Configs.Server.GrpcPort)
 
 	grpcServer := grpc.NewServer(
 		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
