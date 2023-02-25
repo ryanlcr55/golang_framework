@@ -28,7 +28,7 @@ type PostCreate struct {
 	ShowAt  openapi_types.Date `json:"showAt"`
 	Status  PostCreateStatus   `json:"status"`
 	Title   string             `json:"title"`
-	UserNo  string             `json:"user_no"`
+	UserNo  string             `json:"userNo"`
 }
 
 // PostCreateStatus defines model for PostCreate.Status.

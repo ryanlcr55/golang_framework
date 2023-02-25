@@ -35,9 +35,9 @@ components:
   schemas:
     PostCreate:
       type: object
-      required: [user_no, title, content, status,showAt]
+      required: [userNo, title, content, status,showAt]
       properties:
-        user_no:
+        userNo:
           type: string
           example: "user_12238"
         title:

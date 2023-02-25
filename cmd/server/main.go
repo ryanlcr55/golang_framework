@@ -18,10 +18,12 @@ func main() {
 	serverType := strings.ToLower(os.Getenv("SERVER_TO_RUN"))
 	switch serverType {
 	case "http":
+		srv := ports.NewHttpServer(application)
+		server.RunHttpServer(application, srv)
 	case "grpc":
-		svc := ports.NewGrpcServer(application)
+		srv := ports.NewGrpcServer(application)
 		server.RunGRPCServer(application, func(server *grpc.Server) {
-			genproto.RegisterServiceServer(server, svc)
+			genproto.RegisterServiceServer(server, srv)
 		})
 	default:
 		panic(fmt.Sprintf("server type '%s' is not supported", serverType))
