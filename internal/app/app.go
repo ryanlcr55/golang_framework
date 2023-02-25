@@ -7,7 +7,7 @@ import (
 )
 
 type Application struct {
-	Configs    configs.Configs
+	Configs    *configs.Configs
 	Services   Services
 	TrxHandler respositories.ITrxHandler
 	//Logger
@@ -18,7 +18,7 @@ type Services struct {
 }
 
 func NewApplication(
-	configs configs.Configs,
+	configs *configs.Configs,
 	PostSrv services.PostServices,
 	trxHandler respositories.ITrxHandler,
 ) Application {

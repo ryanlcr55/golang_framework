@@ -14,7 +14,7 @@ type Configs struct {
 	DB     DB
 }
 
-func NewServerConfig() Configs {
+func NewServerConfig() *Configs {
 	log.Println("Configs is initializing...")
 	config := Configs{}
 	setDefault(&config)
@@ -26,7 +26,7 @@ func NewServerConfig() Configs {
 		log.Fatalf("fatal on change read")
 	}
 
-	return config
+	return &config
 }
 
 func viperConfigRead(config *Configs) error {

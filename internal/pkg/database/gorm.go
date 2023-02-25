@@ -7,7 +7,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func NewGormDb(configs configs.Configs) *gorm.DB {
+func NewGormDb(configs *configs.Configs) *gorm.DB {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?&loc=Local&parseTime=True",
 		configs.DB.Mysql.UserName,
 		configs.DB.Mysql.Password,
