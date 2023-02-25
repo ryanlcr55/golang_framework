@@ -18,5 +18,5 @@ message PostCreateRequest {
   string title = 2;
   string content = 3;
   PostStatus status = 4;
-  google.protobuf.Timestamp  show_at = 5;
+  google.protobuf.Timestamp show_at = 5;
 }

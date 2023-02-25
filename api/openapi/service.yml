@@ -1,0 +1,65 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Post Service
+  description: TODO
+servers:
+  - url: https://localhost/api
+    variables:
+      hostname:
+        default: localhost
+security:
+  - bearerAuth: []
+paths:
+  /post:
+    post:
+      operationId: PostCreate
+      requestBody:
+        description: todo
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostCreate'
+      responses:
+        '200':
+          description: todo
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    PostCreate:
+      type: object
+      required: [user_no, title, content, status,showAt]
+      properties:
+        user_no:
+          type: string
+          example: "user_12238"
+        title:
+          type: string
+          example: "post title"
+        content:
+          type: string
+          example: "post content"
+        status:
+          type: integer
+          enum: [1, 2]
+        showAt:
+          type: string
+          format: date
+          example: "2020-03-22"
+    Error:
+      type: object
+      required:
+        - slug
+        - message
+      properties:
+        slug:
+          type: string
+        message:
+          type: string
