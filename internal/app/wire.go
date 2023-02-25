@@ -8,7 +8,7 @@ import (
 	"go_framework/internal/adapters/gormadapter"
 	"go_framework/internal/app/respositories"
 	"go_framework/internal/app/services"
-	"go_framework/internal/configs"
+	"go_framework/internal/pkg/configs"
 	"go_framework/internal/pkg/database"
 )
 

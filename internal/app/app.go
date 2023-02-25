@@ -21,8 +21,8 @@ func NewApplication(
 	configs *configs.Configs,
 	PostSrv services.PostServices,
 	trxHandler respositories.ITrxHandler,
-) Application {
-	return Application{
+) *Application {
+	return &Application{
 		Configs: configs,
 		Services: Services{
 			PostService: PostSrv,

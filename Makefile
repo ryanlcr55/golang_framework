@@ -1,5 +1,6 @@
 # injection
 wire:
+	@ go get github.com/google/wire/cmd/wire@v0.5.0
 	@ cd internal/app; go run github.com/google/wire/cmd/wire gen
 
 proto:
