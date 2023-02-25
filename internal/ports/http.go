@@ -7,14 +7,14 @@ import (
 	"net/http"
 )
 
-func NewHttpServer(application app.Application) HttpServer {
+func NewHttpServer(application *app.Application) HttpServer {
 	return HttpServer{
 		app: application,
 	}
 }
 
 type HttpServer struct {
-	app app.Application
+	app *app.Application
 }
 
 func (svr HttpServer) PostCreate(ctx *gin.Context) {

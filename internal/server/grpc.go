@@ -11,7 +11,7 @@ import (
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 )
 
-func RunGRPCServer(application app.Application, registerServers ...func(server *grpc.Server)) {
+func RunGRPCServer(application *app.Application, registerServers ...func(server *grpc.Server)) {
 	addr := fmt.Sprintf(":%s", application.Configs.Server.GrpcPort)
 
 	grpcServer := grpc.NewServer(

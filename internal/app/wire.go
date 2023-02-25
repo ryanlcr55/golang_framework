@@ -12,7 +12,7 @@ import (
 	"go_framework/internal/pkg/database"
 )
 
-func InitializeServer() Application {
+func InitializeServer() *Application {
 	wire.Build(
 		configs.NewServerConfig,
 		database.NewGormDb,
@@ -24,5 +24,5 @@ func InitializeServer() Application {
 		NewApplication,
 	)
 
-	return Application{}
+	return &Application{}
 }

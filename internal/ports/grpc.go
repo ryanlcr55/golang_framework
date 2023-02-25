@@ -9,11 +9,11 @@ import (
 )
 
 type GrpcServer struct {
-	app app.Application
+	app *app.Application
 	genproto.UnimplementedServiceServer
 }
 
-func NewGrpcServer(application app.Application) GrpcServer {
+func NewGrpcServer(application *app.Application) GrpcServer {
 	return GrpcServer{app: application}
 }
 

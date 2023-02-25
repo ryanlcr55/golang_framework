@@ -11,7 +11,7 @@ import (
 	"syscall"
 )
 
-func RunHttpServer(application app.Application, srv ports.HttpServer) {
+func RunHttpServer(application *app.Application, srv ports.HttpServer) {
 	r := gin.Default()
 	r = ports.RegisterHandlers(r, srv)
 
