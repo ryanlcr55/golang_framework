@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go_framework/internal/app"
 	"go_framework/internal/app/entities"
+	"go_framework/internal/genapi"
 	"net/http"
 )
 
@@ -18,9 +19,9 @@ type HttpServer struct {
 }
 
 func (svr HttpServer) PostCreate(ctx *gin.Context) {
-	req := PostCreate{}
+	req := genapi.PostCreate{}
 	if err := ctx.ShouldBindJSON(&req); err != nil {
-		ctx.JSON(http.StatusBadRequest, Error{
+		ctx.JSON(http.StatusBadRequest, genapi.Error{
 			Message: "Post created failed",
 		})
 		return
@@ -35,7 +36,7 @@ func (svr HttpServer) PostCreate(ctx *gin.Context) {
 	}
 
 	if err := svr.app.Services.PostService.CreatePost(ctx, data); err != nil {
-		ctx.JSON(http.StatusInternalServerError, Error{
+		ctx.JSON(http.StatusInternalServerError, genapi.Error{
 			Message: "Post created failed",
 		})
 	}

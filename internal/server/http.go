@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"go_framework/internal/app"
+	"go_framework/internal/genapi"
 	"go_framework/internal/ports"
 	"net/http"
 	"os"
@@ -13,7 +14,7 @@ import (
 
 func RunHttpServer(application *app.Application, srv ports.HttpServer) {
 	r := gin.Default()
-	r = ports.RegisterHandlers(r, srv)
+	r = genapi.RegisterHandlers(r, srv)
 
 	httpSrv := &http.Server{
 		Addr:    fmt.Sprintf(":%s", application.Configs.Server.HttpPort),

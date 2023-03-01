@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-readonly output_dir="internal/ports"
+readonly output_dir="internal/genapi"
 readonly package="ports"
 readonly service="service"
 
