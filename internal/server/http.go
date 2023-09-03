@@ -14,7 +14,9 @@ import (
 
 func RunHttpServer(application *app.Application, srv ports.HttpServer) {
 	r := gin.Default()
-	r = genapi.RegisterHandlers(r, srv)
+
+	handler := genapi.NewStrictHandler(srv, nil)
+	r = genapi.RegisterHandlers(r, handler)
 
 	httpSrv := &http.Server{
 		Addr:    fmt.Sprintf(":%s", application.Configs.Server.HttpPort),

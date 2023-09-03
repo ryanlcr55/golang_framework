@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-readonly output_dir="internal/genapi"
-readonly package="ports"
+readonly output_dir="internal"
+readonly package="genapi"
 readonly service="service"
 
-oapi-codegen -generate types -o "$output_dir/openapi_types.gen.go" -package "$package" "api/openapi/$service.yml"
-oapi-codegen -generate gin -o "$output_dir/openapi_api.gen.go" -package "$package" "api/openapi/$service.yml"
+oapi-codegen -generate types -o "../$output_dir/$package/openapi_types.gen.go" -package "$package" "../api/openapi/$service.yml"
+oapi-codegen -package "$package"  -o "../$output_dir/$package/openapi_api.gen.go" --config=./gen_server_cfg.yaml  "../api/openapi/$service.yml"

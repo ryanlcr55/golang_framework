@@ -1,0 +1,5 @@
+package: post
+generate:
+  gin-server: true
+  strict-server: true
+  embedded-spec: true
