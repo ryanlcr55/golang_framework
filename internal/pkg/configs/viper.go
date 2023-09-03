@@ -11,7 +11,7 @@ func NewServerConfig() *configs.Configs {
 	log.Println("Configs is initializing...")
 	config := configs.Configs{}
 	setDefault(&config)
-	viper.SetConfigFile("../../../.env")
+	viper.SetConfigFile(".env")
 	viper.AutomaticEnv()
 
 	if err := viperConfigRead(&config); err != nil {
